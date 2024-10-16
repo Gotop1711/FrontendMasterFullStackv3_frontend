@@ -1,8 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-
-    <p>Hi, I'm Jarvis.</p>
+    <h1>A site for events to better the world.</h1>
   </div>
 </template>
 
