@@ -32,4 +32,7 @@ onMounted(async () => {
     <p>Category: {{ event.category }}</p>
     <p>Pets Allowed: {{ event.petsAllowed ? 'Yes' : 'No' }}</p>
   </div>
+  <div v-else>
+    Loading event...
+  </div>
 </template>
