@@ -25,6 +25,7 @@ onMounted(async () => {
 
 <template>
   <h1>Events For Good</h1>
+  <RouterLink :to="{ name: 'event-create' }" class="create-event">Create New Event</RouterLink>
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event">
       <template #eventIndex>{{ getEventIndex(event) }}</template>
@@ -40,5 +41,15 @@ onMounted(async () => {
   justify-items: center;
   max-width: max-content;
   margin: 0 auto;
+}
+
+.create-event {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #42b983;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
 }
 </style>
