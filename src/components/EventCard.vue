@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import type { Event } from '@/types/Event'
 
 interface Props {
@@ -9,16 +10,24 @@ const props = defineProps<Props>()
 </script>
 
 <template>
-  <div class="event-card">
-    <h2>
-      <slot name="eventIndex" />
-      {{ props.event.title }}
-    </h2>
-    <span>@{{ props.event.time }} on {{ props.event.date }}</span>
-  </div>
+  <RouterLink :to="{ name: 'event-details', params: { id: props.event.id } }" class="event-link">
+    <div class="event-card">
+      <h2>
+        <slot name="eventIndex" />
+        {{ props.event.title }}
+      </h2>
+      <span>@{{ props.event.time }} on {{ props.event.date }}</span>
+    </div>
+  </RouterLink>
 </template>
 
 <style scoped>
+.event-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+
 .event-card {
   padding: 20px;
   width: 250px;
