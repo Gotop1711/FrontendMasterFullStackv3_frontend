@@ -1,16 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted, PropType } from 'vue'
 import EventService from '@/services/EventService'
 import type { Event } from '@/types/Event'
 
+const props = defineProps({
+  id: {
+    type: Number as PropType<number>,
+    required: true
+  }
+})
+
 const event = ref<Event | null>(null)
-const route = useRoute()
 
 onMounted(async () => {
-  const id = parseInt(route.params.id as string)
   try {
-    const response = await EventService.getEvent(id)
+    const response = await EventService.getEvent(props.id)
     event.value = response.data
   } catch (error) {
     console.error('Error fetching event:', error)
