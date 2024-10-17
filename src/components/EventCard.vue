@@ -1,20 +1,20 @@
 <script setup lang="ts">
-defineProps({
-  event: {
-    type: Object,
-    required: true,
-  },
-})
+import type { Event } from '@/types/Event'
 
+interface Props {
+  event: Event
+}
+
+const props = defineProps<Props>()
 </script>
 
 <template>
   <div class="event-card">
     <h2>
       <slot name="eventIndex" />
-      {{ event.title }}
+      {{ props.event.title }}
     </h2>
-    <span v-text="`@${event.time} on ${event.date}`" />
+    <span>@{{ props.event.time }} on {{ props.event.date }}</span>
   </div>
 </template>
 

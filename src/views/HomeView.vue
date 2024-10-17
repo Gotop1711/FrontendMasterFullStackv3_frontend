@@ -2,7 +2,11 @@
 import EventCard from '@/components/EventCard.vue'
 import { ref } from 'vue'
 
-const events = ref([
+// Move this interface to a separate file, e.g., src/types/Event.ts
+import type { Event } from '@/types/Event'
+
+// Use the Event interface with ref
+const events = ref<Event[]>([
   {
     id: 5928101,
     category: 'animal welfare',
@@ -37,13 +41,18 @@ const events = ref([
     organizer: 'Carey Wales',
   },
 ])
+
+// Type the event parameter in the v-for loop
+const getEventIndex = (event: Event): number => {
+  return events.value.findIndex((e) => e.id === event.id)
+}
 </script>
 
 <template>
   <h1>Events For Good</h1>
   <div class="events">
-    <EventCard v-for="(event, eventIndex) in events" :key="event.id" :event="event">
-      <template #eventIndex>{{ eventIndex }}</template>
+    <EventCard v-for="event in events" :key="event.id" :event="event">
+      <template #eventIndex>{{ getEventIndex(event) }}</template>
     </EventCard>
   </div>
 </template>
