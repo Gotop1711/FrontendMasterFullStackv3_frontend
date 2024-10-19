@@ -3,6 +3,8 @@ import EventCard from '@/components/EventCard.vue'
 import { ref, onMounted } from 'vue'
 import EventService from '@/services/EventService'
 import type { Event } from '@/types/Event'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
 // Use the Event interface with ref
 const events = ref<Event[]>([])
@@ -12,13 +14,23 @@ const getEventIndex = (event: Event): number => {
   return events.value.findIndex((e) => e.id === event.id)
 }
 
-onMounted(async () => {
+const authStore = useAuthStore()
+const router = useRouter()
+
+const fetchEvents = async () => {
   try {
     const response = await EventService.getEvents()
     events.value = response.data
-    console.log(response.data)
   } catch (error) {
     console.error('Error fetching events:', error)
+  }
+}
+
+onMounted(async () => {
+  if (authStore.isAuthenticated) {
+    await fetchEvents()
+  } else {
+    router.push({ name: 'login' })
   }
 })
 </script>
