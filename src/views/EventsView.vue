@@ -6,16 +6,13 @@ import type { Event } from '@/types/Event'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 
-// Use the Event interface with ref
 const events = ref<Event[]>([])
+const authStore = useAuthStore()
+const router = useRouter()
 
-// Type the event parameter in the v-for loop
 const getEventIndex = (event: Event): number => {
   return events.value.findIndex((e) => e.id === event.id)
 }
-
-const authStore = useAuthStore()
-const router = useRouter()
 
 const fetchEvents = async () => {
   try {

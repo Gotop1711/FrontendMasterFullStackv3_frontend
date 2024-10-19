@@ -29,7 +29,7 @@ const deleteEvent = async () => {
   if (confirm('Are you sure you want to delete this event?')) {
     try {
       await EventService.deleteEvent(event.value.id)
-      router.push({ name: 'home' })
+      router.push({ name: 'events' })
     } catch (error) {
       console.error('Error deleting event:', error)
     }

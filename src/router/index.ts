@@ -1,17 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import EventsView from '../views/EventsView.vue'
 import EventDetailsView from '../views/EventDetailsView.vue'
 import EventFormView from '../views/EventFormView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
+import AboutView from '../views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'about',
+      component: AboutView
+    },
+    {
+      path: '/events',
+      name: 'events',
+      component: EventsView
     },
     {
       path: '/event/:id',
@@ -33,11 +39,6 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
     }
   ]
 })

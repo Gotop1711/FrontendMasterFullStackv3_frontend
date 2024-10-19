@@ -20,7 +20,7 @@ const event = ref<Omit<Event, 'id'>>({
 const submitForm = async () => {
   try {
     await EventService.createEvent(event.value)
-    router.push({ name: 'home' })
+    router.push({ name: 'events' })
   } catch (error) {
     console.error('Error creating event:', error)
   }
